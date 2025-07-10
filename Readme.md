@@ -39,6 +39,8 @@ sudo mysql_secure_installation
 #### Edit MariaDB config `[mysqld]`
 
 ```bash
+sudo cp /etc/mysql/mariadb.conf.d
+sudo cp 50-server.cnf 50-server.cn.bak # for backup
 sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 ```
 
@@ -93,12 +95,36 @@ java -version
 ```bash
 cloudstack-setup-databases cloud:cloudpass@localhost --deploy-as=root
 cloudstack-setup-management
-cloudstack-sysvmtemplate -m /var/www/html
+```
+
+#### Apache Server Install
+
+```bash
+sudo apt install apache2 -y
+sudo mkdir -p /var/www/html
+sudo chown -R www-data:www-data /var/www/html
+sudo chmod -R 755 /var/www/html
+sudo ufw allow 'Apache'
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw enable
+sudo ufw status verbose
+```
+
+#### Download SystemVM Template
+
+```bash
+cd /var/www/html
+wget https://download.cloudstack.org/systemvm/4.18/systemvmtemplate-4.18.0-kvm.qcow2.bz2
+bunzip2 systemvmtemplate-4.18.0-kvm.qcow2.bz2
+mv systemvmtemplate-4.18.0-kvm.qcow2 systemvmtemplate.qcow2
 ```
 
 #### Access CloudStack UI
 
 ```bash
+sudo ss -tuln | grep 8080
+sudo ufw allow 8080/tcp
 URL: http://192.168.68.151:8080/client
 Username: admin
 Password: password (you will be prompted to change)
