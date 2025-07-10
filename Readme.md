@@ -5,7 +5,7 @@
 | Role                   | Hostname     | IP Address     | OS           |
 | ---------------------- | ------------ | -------------- | ------------ |
 | CloudStack Management  | cloudstack   | 192.168.68.151 | Ubuntu 20.04 |
-| Ceph MON + OSD Storage | ceph-storage | 192.168.68.152 | Ubuntu 20.04 |
+| Ceph MON + OSD Storage | cephstorage | 192.168.68.152 | Ubuntu 20.04 |
 
 - Hypervisor: KVM
 - CloudStack: v4.20.1.0
@@ -19,7 +19,7 @@
 ```bash
 sudo hostnamectl set-hostname cloudstack
 sudo apt update && sudo apt dist-upgrade -y
-echo -e "192.168.68.151 cloudstack\n192.168.68.152 ceph-storage" | sudo tee -a /etc/hosts
+echo -e "192.168.68.151 cloudstack\n192.168.68.152 cephstorage" | sudo tee -a /etc/hosts
 ```
 
 #### Install Base Dependencies
@@ -109,9 +109,9 @@ Password: password (you will be prompted to change)
 #### Set Hostname and Update
 
 ```bash
-sudo hostnamectl set-hostname ceph-storage
+sudo hostnamectl set-hostname cephstorage
 sudo apt update && sudo apt dist-upgrade -y
-echo -e "192.168.68.151 cloudstack\n192.168.68.152 ceph-storage" | sudo tee -a /etc/hosts
+echo -e "192.168.68.151 cloudstack\n192.168.68.152 cephstorage" | sudo tee -a /etc/hosts
 ```
 
 #### Install cephadm and Bootstrap Ceph
