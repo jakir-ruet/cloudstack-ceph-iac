@@ -80,8 +80,12 @@ sudo apt install -y cloudstack-management cloudstack-common
 #### Set JAVA_HOME
 
 ```bash
-echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" | sudo tee -a /etc/environment
-source /etc/environment
+vi ~/.bashrc
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64/
+export PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+source ~/.bashrc
+echo $JAVA_HOME
+java -version
 ```
 
 #### Setup CloudStack
