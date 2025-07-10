@@ -1,0 +1,7 @@
+/.vscode
+/.idea
+/.DS_Store*
+/01-storage/bind-mount/bind-mount-app/app/node_modules*
+/01-storage/bind-mount/bind-mount-app/mysql-data-bind-mount/*
+/01-storage/volume-mount/volume-mount-app/app/node_modules*
+/01-storage/volume-mount/volume-mount-app/mysql-data-volume-bind/*
